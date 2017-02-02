@@ -69,14 +69,14 @@
                 <sf:deploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
                     serverurl="${sf.server.tgt}" deployRoot="${source.dir}"
                     checkonly="${validate}" rollbackOnError="true" purgeOnDelete="${sf.purge.delete}"
-                    allowMissingFiles="true" ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}"/>
+                    allowMissingFiles="false" ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}"/>
             </then>
             <else>
                 <echo message="Deploying to ${sf.username.tgt} with test level" />
                 <sf:deploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
                     serverurl="${sf.server.tgt}" deployRoot="${source.dir}" 
                     purgeOnDelete="${sf.purge.delete}" checkonly="${validate}" 
-                    testLevel="${sf.test.level}" rollbackOnError="true" allowMissingFiles="true" 
+                    testLevel="${sf.test.level}" rollbackOnError="true" allowMissingFiles="false" 
                     ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}"/>
             </else>
         </if>
