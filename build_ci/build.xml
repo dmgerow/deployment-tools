@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<project name="deployment-tools_v1.1.0" default="help" basedir="../" xmlns:sf="antlib:com.salesforce">
+<project name="deployment-tools_v1.1.1" default="help" basedir="../" xmlns:sf="antlib:com.salesforce">
 
 	<taskdef uri="antlib:com.salesforce"
 			 resource="com/salesforce/antlib.xml"
