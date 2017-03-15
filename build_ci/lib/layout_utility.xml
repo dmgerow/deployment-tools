@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<project name="layout_utility" xmlns:sf="antlib:com.salesforce">
+<!--
+ * 2017, Marley Paige, West Monroe Partners, dmeyer@etherios.com
+-->
+
+<!-- 1) get list of all layouts --> 
+<target name="list-layouts">
+      <mkdir dir="${basedir}/build_ci/tmp"/>  
+     <sf:listMetadata 
+        username="${sf.username.src}"
+        password="${sf.password.src}"
+        serverurl="${sf.server.src}"        
+        metadataType="Layout"
+        resultFilePath="${basedir}/build_ci/tmp/layout.log"
+        />
+</target>  
+<!-- 2) parse out namespaced layouts and create package --> 
+<target name="generate-namespaced-layouts-package">
+        <exec executable="/bin/bash">
+          <arg value="${basedir}/build_ci/lib/managedLayoutsPackage.sh"/>
+          <arg value="${basedir}/build_ci/tmp/layout.log"/>
+          <arg value="${basedir}/build_ci/tmp/managed-layouts-package.xml"/>          
+        </exec>
+</target>
+<!-- 3) retrieve namespaced layouts --> 
+<target name="retrieve-namespaced-layouts">
+        <mkdir dir="${basedir}/src"/>
+        <sf:retrieve 
+          username="${sf.username.src}" 
+          password="${sf.password.src}" 
+          serverurl="${sf.server.src}" 
+          retrieveTarget="${basedir}/src" 
+          unpackaged="${basedir}/build_ci/tmp/managed-layouts-package.xml"/>
+</target>
+
+<!-- do 1,2,3 -->
+<target name="list-and-get-namespaced-layouts">
+    <antcall target="list-layouts"/>
+    <antcall target="generate-namespaced-layouts-package"/>
+    <antcall target="retrieve-namespaced-layouts"/>
+</target>
+
+
+</project>
