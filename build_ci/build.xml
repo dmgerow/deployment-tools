@@ -29,6 +29,7 @@
 	<import file="${basedir}/build_ci/lib/metadata_copier.xml"/>
 	<import file="${basedir}/build_ci/lib/package_generator.xml"/>
 	<import file="${basedir}/build_ci/lib/directory_utility.xml"/>
+	<import file="${basedir}/build_ci/lib/layout_utility.xml"/>	
 
 	<!--
 	====================
