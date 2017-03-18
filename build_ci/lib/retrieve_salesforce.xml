@@ -224,6 +224,7 @@
             <param name="target.dir" value="${target.dir}"/>
             <param name="metadata.type" value="Workflow"/>
         </antcall>
+        <antcall target="retrieve-standardValueSet"/>
     </target>
 
     <target name="param-bulk-retrieve">
@@ -238,5 +239,21 @@
         <sf:describeMetadata username="${sf.username.src}" password="${sf.password.src}${sf.token.src}"
             serverurl="${sf.server.src}" resultFilePath="${basedir}/build_ci/describe.log"/>
     </target>
+
+    <target name="retrieve-standardValueSet">
+        <mkdir dir="${basedir}/src"/>
+        <echo message="retrieving standardValueSet from ${sf.username.src}"/>
+        <echo message=" "/>                  
+        <echo message="*******************"/>          
+        <echo message="*******************"/>          
+        <echo message="******************* Standard ValueSet is using api v 39.0, update standard_value_set-package.xml to add new members and use different api version"/>          
+
+        <sf:retrieve  username="${sf.username.src}" password="${sf.password.src}${sf.token.src}"
+            serverurl="${sf.server.src}" retrieveTarget="${basedir}/src"
+            unpackaged="${basedir}/build_ci/lib/standard_value_set-package.xml"/>
+    </target>
+
+
+
 
 </project>
