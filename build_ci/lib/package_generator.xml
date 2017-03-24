@@ -313,6 +313,13 @@
 			<param name="objexc"  value="Reply.workflow,SocialPost.workflow,Question.workflow" />
 		</antcall>
 
+		<antcall target="generatePackageMembers">
+			<param name="objtyp"  value="StandardValueSet" />
+			<param name="objext"  value="standardValueSet" />
+			<param name="objdir"  value="StandardValueSets" />
+			<param name="objflt"  value="*" />
+		</antcall>		
+
 		<antcall target="generatePackageMembersDocuments" />
 		<antcall target="generatePackageMembersLabels" />
 
