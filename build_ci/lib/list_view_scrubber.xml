@@ -3,19 +3,48 @@
 
     <!-- Decides if list views should be scrubbed -->
     <condition property="scrub.views">
-        <equals arg1="${srub.list.views}" arg2="true"/>
+        <equals arg1="${scrub.list.views}" arg2="true"/>
     </condition>
 
-    <!-- scrubs list views from comparison directory -->
-    <target name="scrub-views-cmp">
-        <antcall target="scrub-list-views">
-            <param name="scrub.dir" value="${basedir}/src_cmp" />
-        </antcall>
-    </target>
+    <!-- Decides if social persona layout assignments should be scrubbed -->
+    <condition property="scrub.social">
+        <equals arg1="${scrub.social.persona}" arg2="true"/>
+    </condition>
+
+    <!-- Decides if ManageSandboxes permission should be scrubbed -->
+    <condition property="scrub.manage">
+        <equals arg1="${scrub.manage.sandboxes}" arg2="true"/>
+    </condition>
+
+    <!-- Decides if EditBillingInfo permission should be scrubbed -->
+    <condition property="scrub.billing">
+        <equals arg1="${scrub.billing.info}" arg2="true"/>
+    </condition>
 
     <!-- scrubs list views from source directory -->
     <target name="scrub-views-src">
         <antcall target="scrub-list-views">
+            <param name="scrub.dir" value="${basedir}/src" />
+        </antcall>
+    </target>
+
+    <!-- remove social persona from source directory -->
+    <target name="scrub-social-src">
+        <antcall target="scrub-social-post">
+            <param name="scrub.dir" value="${basedir}/src" />
+        </antcall>
+    </target>
+
+    <!-- scrubs list views from source directory -->
+    <target name="scrub-manage-sandboxes-src">
+        <antcall target="scrub-manage-sandboxes">
+            <param name="scrub.dir" value="${basedir}/src" />
+        </antcall>
+    </target>
+
+    <!-- scrubs list views from source directory -->
+    <target name="scrub-billing-info-src">
+        <antcall target="scrub-billing-info">
             <param name="scrub.dir" value="${basedir}/src" />
         </antcall>
     </target>
@@ -35,15 +64,8 @@
         </if>
     </target>
 
-    <!-- remove social persona from source directory -->
-    <target name="scrub-social-src">
-        <antcall target="scrub-social-post">
-            <param name="scrub.dir" value="${basedir}/src" />
-        </antcall>
-    </target>
-
     <!-- remove social persona layout assignments from profiles -->
-    <target name="scrub-social-post">
+    <target name="scrub-social-post" if="${scrub.social}">
     <if>
         <available file="${scrub.dir}/profiles" type="dir" />
         <then>
@@ -55,6 +77,36 @@
             </replaceregexp>
         </then>
     </if>
-</target>
+    </target>
+
+    <!-- scrubs inappropriate profile permissions -->
+    <target name="scrub-manage-sandboxes" if="${scrub.manage}"> 
+        <if>
+            <available file="${scrub.dir}/profiles" type="dir" />
+            <then>
+                <echo message="scrubbing ManageSandboxes" />      
+                <replaceregexp flags="sg">
+                    <fileset dir="${scrub.dir}/profiles" />
+                    <regexp pattern="&lt;userPermissions&gt;\s+&lt;enabled&gt;true&lt;/enabled&gt;\s+&lt;name&gt;ManageSandboxes&lt;/name&gt;\s+&lt;/userPermissions&gt;\s+"/>
+                    <substitution expression=""/>
+                </replaceregexp>
+            </then>
+        </if>
+    </target>
+
+    <!-- scrubs inappropriate profile permissions -->
+    <target name="scrub-billing-info" if="${scrub.billing}"> 
+        <if>
+            <available file="${scrub.dir}/profiles" type="dir" />
+            <then>
+                <echo message="scrubbing EditBillingInfo" />
+                <replaceregexp flags="sg">
+                    <fileset dir="${scrub.dir}/profiles" />
+                    <regexp pattern="&lt;userPermissions&gt;\s+&lt;enabled&gt;true&lt;/enabled&gt;\s+&lt;name&gt;EditBillingInfo&lt;/name&gt;\s+&lt;/userPermissions&gt;\s+"/>
+                    <substitution expression=""/>
+                </replaceregexp>
+            </then>
+        </if>
+    </target>
 
 </project>
