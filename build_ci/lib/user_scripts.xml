@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<project name="user_scripts" xmlns:sf="antlib:com.salesforce">
+
+    <!-- Write your own target -->
+    <target name="fancy-target">
+        <echo message="This is my fancy custom target"></echo>
+    </target>
+
+</project>
