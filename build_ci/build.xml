@@ -21,7 +21,6 @@
 	-->
 	<import file="${basedir}/build_ci/lib/help.xml"/>
 	<import file="${basedir}/build_ci/lib/exec_anon.xml"/>
-	<import file="${basedir}/build_ci/lib/list_view_scrubber.xml"/>
 	<import file="${basedir}/build_ci/lib/deploy_salesforce.xml"/>
 	<import file="${basedir}/build_ci/lib/retrieve_salesforce.xml"/>
 	<import file="${basedir}/build_ci/lib/retrieve_git.xml"/>
@@ -39,17 +38,6 @@
 	<target name="retrieve-git-source">
 		<antcall target="wipe-git-directory"/>
 		<antcall target="retrieve-from-git"/>
-	</target>
-
-	<target name="retrieve-src-all">
-		<antcall target="make-src"/>
-		<antcall target="cache-src-package"/>
-		<antcall target="param-retrieve">
-			<param name="package" value="${basedir}/build_ci/packages/fullPackage.xml" />
-			<param name="target.dir" value="src" />
-		</antcall>
-		<antcall target="scrub-views-src"/>
-		<antcall target="restore-src-package"/>
 	</target>
 
 	<target name="retrieve-src">
@@ -77,6 +65,21 @@
 	Deploy Targets
 	====================
 	-->
+		
+	<target name="validate-local-source">
+		<antcall target="wipe-cmp-directory"/>
+		<antcall target="retrieve-cmp-src"/>
+		<antcall target="wipe-dep-directory"/>
+		<antcall target="cherry-pick-src-metadata"/>
+		<antcall target="validate-dep"/>
+	</target>
+	
+	<target name="validate-cmp-source">
+		<antcall target="wipe-cmp-directory"/>
+		<antcall target="retrieve-cmp-src"/>
+		<antcall target="validate-cmp"/>
+	</target>
+
 	<target name="validate-git-source">
 		<antcall target="wipe-git-directory"/>
 		<antcall target="retrieve-from-git"/>
@@ -87,19 +90,12 @@
 		<antcall target="validate-dep"/>
 	</target>
 
-	<target name="validate-cmp-source">
+	
+	<target name="deploy-local-source">
 		<antcall target="wipe-cmp-directory"/>
 		<antcall target="retrieve-cmp-src"/>
-		<antcall target="validate-cmp"/>
-	</target>
-
-	<target name="deploy-git-source">
-		<antcall target="wipe-git-directory"/>
-		<antcall target="retrieve-from-git"/>
-		<antcall target="wipe-cmp-directory"/>
-		<antcall target="retrieve-cmp-git"/>
 		<antcall target="wipe-dep-directory"/>
-		<antcall target="cherry-pick-git-metadata"/>
+		<antcall target="cherry-pick-src-metadata"/>
 		<antcall target="deploy-dep"/>
 	</target>
 
@@ -109,19 +105,13 @@
 		<antcall target="deploy-cmp"/>
 	</target>
 
-	<target name="validate-local-source">
+	<target name="deploy-git-source">
+		<antcall target="wipe-git-directory"/>
+		<antcall target="retrieve-from-git"/>
 		<antcall target="wipe-cmp-directory"/>
-		<antcall target="retrieve-cmp-src"/>
+		<antcall target="retrieve-cmp-git"/>
 		<antcall target="wipe-dep-directory"/>
-		<antcall target="cherry-pick-src-metadata"/>
-		<antcall target="validate-dep"/>
-	</target>
-
-	<target name="deploy-local-source">
-		<antcall target="wipe-cmp-directory"/>
-		<antcall target="retrieve-cmp-src"/>
-		<antcall target="wipe-dep-directory"/>
-		<antcall target="cherry-pick-src-metadata"/>
+		<antcall target="cherry-pick-git-metadata"/>
 		<antcall target="deploy-dep"/>
 	</target>
 
