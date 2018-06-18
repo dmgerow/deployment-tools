@@ -47,7 +47,6 @@
 			<param name="package" value="${basedir}/src/package.xml" />
 			<param name="target.dir" value="src" />
 		</antcall>
-		<antcall target="scrub-views-src"/>
 		<antcall target="restore-src-package"/>
 	</target>
 
@@ -56,7 +55,6 @@
 		<antcall target="param-bulk-retrieve-all">
 			<param name="target.dir" value="src" />
 		</antcall>
-		<antcall target="scrub-views-src"/>
 		<antcall target="restore-src-package"/>
 	</target>
 
