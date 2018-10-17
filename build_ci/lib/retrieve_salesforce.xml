@@ -6,18 +6,6 @@
         <equals arg1="sf.retrieve.merge" arg2="true"/>
     </condition>
 
-    <!-- retrieves metadata to cmp directory from salesforce using the package in git -->
-    <target name="retrieve-cmp-git">
-        <antcall target="param-retrieve">
-            <param name="package" value="${basedir}/src_git/${git.srcdir}/package.xml" />
-            <param name="target.dir" value="${basedir}/src_cmp" />
-        </antcall>
-        <antcall target="param-retrieve-merge">
-            <param name="package" value="${basedir}/src_git/${git.srcdir}/package.xml" />
-            <param name="target.dir" value="${basedir}/src_cmp" />
-        </antcall>
-    </target>
-
     <!-- retrieves metadata to cmp directory from salesforce using the package in src -->
     <target name="retrieve-cmp-src">
         <antcall target="param-retrieve">

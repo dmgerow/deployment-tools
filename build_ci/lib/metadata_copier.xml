@@ -5,19 +5,6 @@
          items in the comparison directory. This ensures only necessary items are present for
          deployment
     -->
-    <target name="cherry-pick-git-metadata">
-        <copy todir="${basedir}/src_dep">
-            <fileset dir="${basedir}/src_git/${git.srcdir}" includes="**/*.*">
-                <present present="both" targetdir="${basedir}/src_cmp"/>
-            </fileset>
-            <fileset dir="${basedir}/src_git/${git.srcdir}" includes="destructiveChanges*.xml" />
-        </copy>
-    </target>
-
-    <!-- copies metadata from the git source directory to the deployment directory based on the
-         items in the comparison directory. This ensures only necessary items are present for
-         deployment
-    -->
     <target name="cherry-pick-src-metadata">
         <copy todir="${basedir}/src_dep">
             <fileset dir="${basedir}/src" includes="**/*.*">

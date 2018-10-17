@@ -4,16 +4,8 @@
     <!-- wipes all source directories -->
     <target name="wipe-all-directories">
         <antcall target="wipe-src-directory"/>
-        <antcall target="wipe-git-directory"/>
         <antcall target="wipe-cmp-directory"/>
         <antcall target="wipe-dep-directory"/>
-    </target>
-
-    <!-- wipes git directory -->
-    <target name="wipe-git-directory">
-       <mkdir dir="${basedir}/src_git"/>
-       <delete dir="${basedir}/src_git"/>
-       <mkdir dir="${basedir}/src_git"/>
     </target>
 
     <!-- wipes compare directory -->

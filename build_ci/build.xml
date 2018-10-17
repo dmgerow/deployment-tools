@@ -23,7 +23,6 @@
 	<import file="${basedir}/build_ci/lib/exec_anon.xml"/>
 	<import file="${basedir}/build_ci/lib/deploy_salesforce.xml"/>
 	<import file="${basedir}/build_ci/lib/retrieve_salesforce.xml"/>
-	<import file="${basedir}/build_ci/lib/retrieve_git.xml"/>
 	<import file="${basedir}/build_ci/lib/directory_cleaner.xml"/>
 	<import file="${basedir}/build_ci/lib/metadata_copier.xml"/>
 	<import file="${basedir}/build_ci/lib/package_generator.xml"/>
@@ -35,10 +34,6 @@
 	Retrieve Targets
 	====================
 	-->
-	<target name="retrieve-git-source">
-		<antcall target="wipe-git-directory"/>
-		<antcall target="retrieve-from-git"/>
-	</target>
 
 	<target name="retrieve-src">
 		<antcall target="make-src"/>
@@ -77,17 +72,6 @@
 		<antcall target="retrieve-cmp-src"/>
 		<antcall target="validate-cmp"/>
 	</target>
-
-	<target name="validate-git-source">
-		<antcall target="wipe-git-directory"/>
-		<antcall target="retrieve-from-git"/>
-		<antcall target="wipe-cmp-directory"/>
-		<antcall target="retrieve-cmp-git"/>
-		<antcall target="wipe-dep-directory"/>
-		<antcall target="cherry-pick-git-metadata"/>
-		<antcall target="validate-dep"/>
-	</target>
-
 	
 	<target name="deploy-local-source">
 		<antcall target="wipe-cmp-directory"/>
@@ -101,16 +85,6 @@
 		<antcall target="wipe-cmp-directory"/>
 		<antcall target="retrieve-cmp-src"/>
 		<antcall target="deploy-cmp"/>
-	</target>
-
-	<target name="deploy-git-source">
-		<antcall target="wipe-git-directory"/>
-		<antcall target="retrieve-from-git"/>
-		<antcall target="wipe-cmp-directory"/>
-		<antcall target="retrieve-cmp-git"/>
-		<antcall target="wipe-dep-directory"/>
-		<antcall target="cherry-pick-git-metadata"/>
-		<antcall target="deploy-dep"/>
 	</target>
 
 	<!--
