@@ -3,7 +3,7 @@
 
     <target name="help">
         <echo message="  See the git repository for more usage documentation:
-            https://gitlab.com/WMP/deployment-tools"/>
+            https://github.com/dmgerow/deployment-tools"/>
         <antcall target="help-properties" />
         <antcall target="help-retrieve" />
         <antcall target="help-deploy" />
