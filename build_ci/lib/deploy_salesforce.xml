@@ -74,23 +74,23 @@
             <else>
                 <echo message="Deploying to ${sf.username.tgt} with test level" />
                 <sf:deploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
-                    serverurl="${sf.server.tgt}" deployRoot="${source.dir}" 
-                    purgeOnDelete="${sf.purge.delete}" checkonly="${validate}" 
-                    testLevel="${sf.test.level}" rollbackOnError="true" allowMissingFiles="false" 
+                    serverurl="${sf.server.tgt}" deployRoot="${source.dir}"
+                    purgeOnDelete="${sf.purge.delete}" checkonly="${validate}"
+                    testLevel="${sf.test.level}" rollbackOnError="true" allowMissingFiles="false"
                     ignoreWarnings="true" pollWaitMillis="${sf.poll.wait}"/>
             </else>
         </if>
     </target>
 
     <target name="cancel-job">
-      <sf:cancelDeploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
-          serverurl="${sf.server.tgt}" requestId="${sf.request.id}"/>
+        <sf:cancelDeploy username="${sf.username.tgt}" password="${sf.password.tgt}${sf.token.tgt}"
+            serverurl="${sf.server.tgt}" requestId="${sf.request.id}"/>
     </target>
 
     <target name="quickDeploy">
-      <sf:deployRecentValidation username="${sf.username.tgt}"
-             password="${sf.password.tgt}${sf.token.tgt}"
-             serverurl="${sf.server.tgt}" recentValidationId="${sf.validation.id}"/>
+        <sf:deployRecentValidation username="${sf.username.tgt}"
+            password="${sf.password.tgt}${sf.token.tgt}"
+            serverurl="${sf.server.tgt}" recentValidationId="${sf.validation.id}"/>
     </target>
 
 </project>
