@@ -2,8 +2,8 @@
 <project name="metadata_copier">
 
     <!-- copies metadata from the git source directory to the deployment directory based on the
-         items in the comparison directory. This ensures only necessary items are present for
-         deployment
+        items in the comparison directory. This ensures only necessary items are present for
+        deployment
     -->
     <target name="cherry-pick-src-metadata">
         <copy todir="${basedir}/src_dep">

@@ -57,27 +57,6 @@
             ${line.separator}
             ${line.separator} sf.test.level (Required)
             ${line.separator} Specify test level. See the build.properties for test level options
-            ${line.separator}
-            ${line.separator} git.username
-            ${line.separator} Username for your git repository
-            ${line.separator}
-            ${line.separator} git.password
-            ${line.separator} Password for your git repository
-            ${line.separator}
-            ${line.separator} git.name
-            ${line.separator} Your name
-            ${line.separator}
-            ${line.separator} git.email
-            ${line.separator} Your email
-            ${line.separator}
-            ${line.separator} git.endpoint
-            ${line.separator} Https endpoint for your git repository
-            ${line.separator}
-            ${line.separator} git.branch
-            ${line.separator} Git branch to interact with (generally origin/[branch])
-
-            ${line.separator} git.srcdir
-            ${line.separator} Specify the src directory file path relative to your project (generally just “src”)
             "/>
     </target>
 
@@ -86,11 +65,6 @@
             ${line.separator}************************* RETRIEVE TARGETS *************************
             ${line.separator}retrieve-git-source
             ${line.separator}Retrieves all of the git source for the branch specified in the build.properties file
-            ${line.separator}
-            ${line.separator}retrieve-src-all
-            ${line.separator}Retrieve all metadata stored in the “fullPackage.xml” file located in packages folder.
-            ${line.separator}Populate this with a package of all of your metadata, and use it to pull down complete
-            ${line.separator}images of your org
             ${line.separator}
             ${line.separator}retrieve-src
             ${line.separator}Retrieve all of the source in the package.xml in the src directory from your Salesforce

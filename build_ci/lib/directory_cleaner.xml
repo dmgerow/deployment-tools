@@ -1,37 +1,37 @@
 <?xml version="1.0"?>
 <project name="directory_cleaner">
 
-    <!-- wipes all source directories -->
-    <target name="wipe-all-directories">
-        <antcall target="wipe-src-directory"/>
-        <antcall target="wipe-cmp-directory"/>
-        <antcall target="wipe-dep-directory"/>
-    </target>
+   <!-- wipes all source directories -->
+   <target name="wipe-all-directories">
+      <antcall target="wipe-src-directory"/>
+      <antcall target="wipe-cmp-directory"/>
+      <antcall target="wipe-dep-directory"/>
+   </target>
 
-    <!-- wipes compare directory -->
-    <target name="wipe-cmp-directory">
-       <mkdir dir="${basedir}/src_cmp"/>
-       <delete dir="${basedir}/src_cmp"/>
-       <mkdir dir="${basedir}/src_cmp"/>
-    </target>
+   <!-- wipes compare directory -->
+   <target name="wipe-cmp-directory">
+      <mkdir dir="${basedir}/src_cmp"/>
+      <delete dir="${basedir}/src_cmp"/>
+      <mkdir dir="${basedir}/src_cmp"/>
+   </target>
 
-    <!-- wipes deployment directory -->
-    <target name="wipe-dep-directory">
-       <mkdir dir="${basedir}/src_dep"/>
-       <delete dir="${basedir}/src_dep"/>
-       <mkdir dir="${basedir}/src_dep"/>
-    </target>
+   <!-- wipes deployment directory -->
+   <target name="wipe-dep-directory">
+      <mkdir dir="${basedir}/src_dep"/>
+      <delete dir="${basedir}/src_dep"/>
+      <mkdir dir="${basedir}/src_dep"/>
+   </target>
 
-    <!-- wipes source directory -->
-    <target name="wipe-src-directory">
-       <mkdir dir="${basedir}/src"/>
-       <delete dir="${basedir}/src"/>
-       <mkdir dir="${basedir}/src"/>
-    </target>
+   <!-- wipes source directory -->
+   <target name="wipe-src-directory">
+      <mkdir dir="${basedir}/src"/>
+      <delete dir="${basedir}/src"/>
+      <mkdir dir="${basedir}/src"/>
+   </target>
 
-    <!-- create source directory -->
-    <target name="make-src">
-       <mkdir dir="${basedir}/src"/>
-    </target>
+   <!-- create source directory -->
+   <target name="make-src">
+      <mkdir dir="${basedir}/src"/>
+   </target>
 
 </project>

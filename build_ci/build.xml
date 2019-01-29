@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<project name="deployment-tools_v1.3.0" default="help" basedir="../" xmlns:sf="antlib:com.salesforce">
+<project name="deployment-tools_v1.4.0" default="help" basedir="../" xmlns:sf="antlib:com.salesforce">
 
 	<taskdef uri="antlib:com.salesforce"
-			 resource="com/salesforce/antlib.xml"
-			 classpath="${basedir}/build_ci/lib/ant-salesforce.jar"/>
+			resource="com/salesforce/antlib.xml"
+			classpath="${basedir}/build_ci/lib/ant-salesforce.jar"/>
 
 	<!--
 	====================
@@ -25,7 +25,6 @@
 	<import file="${basedir}/build_ci/lib/retrieve_salesforce.xml"/>
 	<import file="${basedir}/build_ci/lib/directory_cleaner.xml"/>
 	<import file="${basedir}/build_ci/lib/metadata_copier.xml"/>
-	<import file="${basedir}/build_ci/lib/package_generator.xml"/>
 	<import file="${basedir}/build_ci/lib/directory_utility.xml"/>
 	<import file="${basedir}/build_ci/lib/user_scripts.xml"/>
 
@@ -45,20 +44,12 @@
 		<antcall target="restore-src-package"/>
 	</target>
 
-	<target name="bulk-retrieve-all">
-		<antcall target="cache-src-package"/>
-		<antcall target="param-bulk-retrieve-all">
-			<param name="target.dir" value="src" />
-		</antcall>
-		<antcall target="restore-src-package"/>
-	</target>
-
 	<!--
 	====================
 	Deploy Targets
 	====================
 	-->
-		
+
 	<target name="validate-local-source">
 		<antcall target="wipe-cmp-directory"/>
 		<antcall target="retrieve-cmp-src"/>
@@ -66,13 +57,13 @@
 		<antcall target="cherry-pick-src-metadata"/>
 		<antcall target="validate-dep"/>
 	</target>
-	
+
 	<target name="validate-cmp-source">
 		<antcall target="wipe-cmp-directory"/>
 		<antcall target="retrieve-cmp-src"/>
 		<antcall target="validate-cmp"/>
 	</target>
-	
+
 	<target name="deploy-local-source">
 		<antcall target="wipe-cmp-directory"/>
 		<antcall target="retrieve-cmp-src"/>
